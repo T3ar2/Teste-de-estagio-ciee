@@ -1,6 +1,7 @@
 using API.Models;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace API.Endpoints;
 
 public static class AnimaisEndpoints

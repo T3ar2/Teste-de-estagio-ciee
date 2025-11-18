@@ -3,21 +3,22 @@
 GET http://localhost:5227
 
 ### Listar todos os animais
-GET http://localhost:5227/localhost:5064/api/animail/listar
+GET  http://localhost:5227/api/animal/listar
 
 ### Buscar por id
-GET http://localhost:5227/localhost:5064/api/animal/buscar/{id}
+GET http://localhost:5227/api/animal/buscar/{id}
 
 ### Cadastrar Animais
-POST http://localhost:5227/localhost:5064/api/animal/cadastrar
+POST http://localhost:5227/api/animal/cadastrar
 Content-Type: application/json
 
 {
+    
     "nome" : "Tamanduá-Bandeira",
     "descricao" : "Mamífero de grande porte, nativo da América do Sul, conhecido por sua cauda longa e espessa que se assemelha a uma bandeira. Sua alimentação é baseada em insetos.",
-    "dataNascimento" : "26/10/2000",
+    "dataNascimento" : "2000-10-26",
     "especie" : "Mamífero da ordem Xenarthra e família Myrmecophagidae",
     "habitat": "ampos abertos, florestas e savanas da América do Sul.",
-    "paisDeOrigem": "Brasil",
+    "paisDeOrigem": "Brasil"
 
 }   
