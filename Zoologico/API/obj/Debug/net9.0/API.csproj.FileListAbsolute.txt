@@ -1,0 +1,7 @@
+C:\Users\Nicollas\Desktop\Up\Teste estágio\Teste-de-estagio-ciee\Zoologico\API\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\Nicollas\Desktop\Up\Teste estágio\Teste-de-estagio-ciee\Zoologico\API\obj\Debug\net9.0\API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Nicollas\Desktop\Up\Teste estágio\Teste-de-estagio-ciee\Zoologico\API\obj\Debug\net9.0\API.AssemblyInfoInputs.cache
+C:\Users\Nicollas\Desktop\Up\Teste estágio\Teste-de-estagio-ciee\Zoologico\API\obj\Debug\net9.0\API.AssemblyInfo.cs
+C:\Users\Nicollas\Desktop\Up\Teste estágio\Teste-de-estagio-ciee\Zoologico\API\obj\Debug\net9.0\API.csproj.CoreCompileInputs.cache
+C:\Users\Nicollas\Desktop\Up\Teste estágio\Teste-de-estagio-ciee\Zoologico\API\obj\Debug\net9.0\API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Nicollas\Desktop\Up\Teste estágio\Teste-de-estagio-ciee\Zoologico\API\obj\Debug\net9.0\API.sourcelink.json

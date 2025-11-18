@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "u7c0s1WcqDU=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Nicollas\\Desktop\\Up\\Teste estágio\\Teste-de-estagio-ciee\\Zoologico\\API\\API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Nicollas\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\10.0.0\\microsoft.entityframeworkcore.tools.10.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
