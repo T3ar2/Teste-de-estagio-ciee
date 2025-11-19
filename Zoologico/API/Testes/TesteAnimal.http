@@ -1,4 +1,3 @@
-
 ### Link base de teste
 GET http://localhost:5227
 
@@ -7,7 +6,6 @@ GET  http://localhost:5227/api/animal/listar
 
 ### Buscar por id
 GET http://localhost:5227/api/animal/buscar/{id}
-
 ### Cadastrar Animais
 POST http://localhost:5227/api/animal/cadastrar
 Content-Type: application/json
@@ -22,3 +20,21 @@ Content-Type: application/json
     "paisDeOrigem": "Brasil"
 
 }   
+
+### Deletar um Animal
+DELETE http://localhost:5227/api/animal/deletar/{id}
+
+### Atualizar um Animal
+PATCH http://localhost:5227/api/animal/atualizar/{id}
+Content-Type: application/json
+
+{
+    
+    "nome" : "Tamanduá",
+    "descricao" : "Mamífero de grande porte, nativo da América do Sul, conhecido por sua cauda longa e espessa que se assemelha a uma bandeira. Sua alimentação é baseada em insetos.",
+    "dataNascimento" : "2010-12-01",
+    "especie" : "Mamífero da ordem Xenarthra e família Myrmecophagidae",
+    "habitat": "Campos abertos, florestas e savanas da América do Sul.",
+    "paisDeOrigem": "Brasil"
+
+}  

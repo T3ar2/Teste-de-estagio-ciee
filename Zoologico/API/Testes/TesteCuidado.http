@@ -1,0 +1,31 @@
+### Link base de teste
+GET http://localhost:5227
+
+### Buscar Cuidado
+GET http://localhost:5227/api/cuidados/buscar/{id}
+
+### Listar Cuidado
+GET http://localhost:5227/api/cuidados/listar
+
+### Cadastrar Cuidado
+POST http://localhost:5227/api/cuidados/cadastrar
+Content-Type: application/json
+
+{
+    "nomeCuidado" : "Alimentação",
+    "descricao" : "Garantir de que cada animal receba uma dieta segura e balanceada, específica para sua espécie, essencial para sua saúde e bem-estar.",
+    "frequencia" : "diária"
+}   
+
+### Deletar Cuidado
+DELETE http://localhost:5227/api/cuidados/deletar/{id}
+
+### Atualizar Cuidado
+PATCH http://localhost:5227/api/cuidados/atualizar/{id}
+Content-Type: application/json
+
+{
+    "nomeCuidado" : "Alimentação",
+    "descricao" : "Garantir de que cada animal receba uma dieta segura e balanceada, específica para sua espécie, essencial para sua saúde e bem-estar.",
+    "frequencia" : "Semanal"
+}   

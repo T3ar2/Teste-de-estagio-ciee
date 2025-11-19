@@ -22,30 +22,30 @@ public static class CuidadosEndpoints
         app.MapGet("/api/cuidados/buscar/{id}", async (AppDbContext ctx, int id) =>
         {
             Cuidados? resultado = await ctx.Cuidados.FirstOrDefaultAsync(x => x.Id == id);
-            if (resultado is null) { return Results.NotFound("Animal não encontrado."); }
+            if (resultado is null) { return Results.NotFound("Cuidado não encontrado."); }
             return Results.Ok(resultado);
         });
 
-        app.MapPost("/api/cuidados/cadastrar", async (AppDbContext ctx, Animais novoCuidado) =>
+        app.MapPost("/api/cuidados/cadastrar", async (AppDbContext ctx, Cuidados novoCuidado) =>
         {
-            if (string.IsNullOrWhiteSpace(novoCuidado.Nome))
+            if (string.IsNullOrWhiteSpace(novoCuidado.NomeCuidado))
             {
-                return Results.BadRequest("Nome do animal é obrigatório.");
+                return Results.BadRequest("Nome do cuidado é obrigatório.");
             }
 
-            bool jaExiste = await ctx.Animais.AnyAsync(x => x.Nome == novoCuidado.Nome);
-            if (jaExiste is true) { return Results.Conflict("Animal já cadastrado no bando de dados."); }
-            ctx.Animais.Add(novoCuidado);
+            bool jaExiste = await ctx.Cuidados.AnyAsync(x => x.NomeCuidado == novoCuidado.NomeCuidado);
+            if (jaExiste is true) { return Results.Conflict("Cuidado já cadastrado no bando de dados."); }
+            ctx.Cuidados.Add(novoCuidado);
             await ctx.SaveChangesAsync();
             return Results.Created($"/api/cuiados/buscar/id/{novoCuidado.Id}", novoCuidado);
         });
 
         app.MapDelete("/api/cuidados/deletar/{id}", async (AppDbContext ctx, int id) =>
         {
-            Animais? resultado = await ctx.Animais.FindAsync(id);
+            Cuidados? resultado = await ctx.Cuidados.FindAsync(id);
             if (resultado is null) { return Results.NotFound("não é possivel deletar algo em que não está no banco de dados."); }
             ;
-            ctx.Animais.Remove(resultado);
+            ctx.Cuidados.Remove(resultado);
             await ctx.SaveChangesAsync();
             return Results.Ok(resultado);
         });
