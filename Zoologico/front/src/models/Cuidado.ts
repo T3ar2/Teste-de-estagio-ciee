@@ -1,6 +1,6 @@
 export default interface Cuidado{
 
-    Id: number,
+    Id?: number,
     NomeCuidado: string,
     Descricao: string,
     Frequencia: string

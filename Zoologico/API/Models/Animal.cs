@@ -11,7 +11,7 @@ public class Animais
     public int Id { set; get; }
     public string Nome { set; get; } = string.Empty;
     public string Descricao { set; get; } = string.Empty;
-    public string DataNascimento { set; get; }
+    public string DataNascimento { set; get; } = string.Empty;
     public string Especie { set; get; } = string.Empty;
     public string Habitat { set; get; } = string.Empty;
     public string PaisDeOrigem { set; get; } = string.Empty;
