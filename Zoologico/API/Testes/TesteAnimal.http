@@ -2,12 +2,12 @@
 GET http://localhost:5227
 
 ### Listar todos os animais
-GET  http://localhost:5227/api/animal/listar
+GET  http://localhost:5227/api/animais/listar
 
 ### Buscar por id
-GET http://localhost:5227/api/animal/buscar/{id}
+GET http://localhost:5227/api/animais/buscar/{id}
 ### Cadastrar Animais
-POST http://localhost:5227/api/animal/cadastrar
+POST http://localhost:5227/api/animais/cadastrar
 Content-Type: application/json
 
 {
@@ -22,10 +22,10 @@ Content-Type: application/json
 }   
 
 ### Deletar um Animal
-DELETE http://localhost:5227/api/animal/deletar/{id}
+DELETE http://localhost:5227/api/animais/deletar/{id}
 
 ### Atualizar um Animal
-PATCH http://localhost:5227/api/animal/atualizar/{id}
+PATCH http://localhost:5227/api/animais/atualizar/{id}
 Content-Type: application/json
 
 {

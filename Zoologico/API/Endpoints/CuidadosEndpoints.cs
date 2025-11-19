@@ -37,7 +37,7 @@ public static class CuidadosEndpoints
             if (jaExiste is true) { return Results.Conflict("Cuidado já cadastrado no bando de dados."); }
             ctx.Cuidados.Add(novoCuidado);
             await ctx.SaveChangesAsync();
-            return Results.Created($"/api/cuiados/buscar/id/{novoCuidado.Id}", novoCuidado);
+            return Results.Created($"/api/cuidados/buscar/{novoCuidado.Id}", novoCuidado);
         });
 
         app.MapDelete("/api/cuidados/deletar/{id}", async (AppDbContext ctx, int id) =>

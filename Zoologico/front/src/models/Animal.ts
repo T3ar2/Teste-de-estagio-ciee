@@ -1,10 +1,10 @@
 export default interface Animal{
 
-    Id? : number,
-    Nome : string,
-    Descricao : string,
-    DataNascimento : string,
-    Especie : string,
-    Habitat: string,
-    PaisDeOrigem : string
+    id? : number,
+    nome : string,
+    descricao : string,
+    dataNascimento : string,
+    especie : string,
+    habitat: string,
+    paisDeOrigem : string
 }

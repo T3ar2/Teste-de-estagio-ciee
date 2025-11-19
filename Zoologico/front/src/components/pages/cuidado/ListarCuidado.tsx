@@ -48,14 +48,14 @@ function ListarCuidado(){
                     </thead>
                     <tbody>
                         {cuidados.map((cuidado) => (
-                            <tr key={cuidado.Id}> 
-                                <td>{cuidado.Id}</td>
-                                <td>{cuidado.NomeCuidado}</td>
-                                <td>{cuidado.Descricao}</td>
-                                <td>{cuidado.Frequencia}</td>
+                            <tr key={cuidado.id}> 
+                                <td>{cuidado.id}</td>
+                                <td>{cuidado.nomeCuidado}</td>
+                                <td>{cuidado.descricao}</td>
+                                <td>{cuidado.frequencia}</td>
                                 <td>
-                                    <Link to={`/pages/cuidado/editar/${cuidado.Id}`}>Editar</Link>
-                                    <Link to={`/pages/cuidado/deletar/${cuidado.Id}`}>Excluir</Link>
+                                    <Link to={`/pages/cuidado/editar/${cuidado.id}`}>Editar</Link>
+                                    <Link to={`/pages/cuidado/deletar/${cuidado.id}`}>Excluir</Link>
                                 </td>
                             </tr>
                         ))}
@@ -63,7 +63,6 @@ function ListarCuidado(){
                 </table>
             
             
-            {/* Link para a página de cadastro */}
             <div>
                 <Link to="/pages/cuidado/cadastrar">Cadastrar Novo Animal</Link>
             </div>

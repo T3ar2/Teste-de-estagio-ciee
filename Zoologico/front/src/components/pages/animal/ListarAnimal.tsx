@@ -46,18 +46,18 @@ function ListarAnimal(){
                     </thead>
                     <tbody>
                         {animais.map((animal) => (
-                            <tr key={animal.Id}> 
-                                <td>{animal.Id}</td>
-                                <td>{animal.Nome}</td>
-                                <td>{animal.Descricao}</td>
-                                <td>{animal.DataNascimento}</td>
-                                <td>{animal.Especie}</td>
-                                <td>{animal.Habitat}</td>
-                                <td>{animal.PaisDeOrigem}</td>
+                            <tr key={animal.id}> 
+                                <td>{animal.id}</td>
+                                <td>{animal.nome}</td>
+                                <td>{animal.descricao}</td>
+                                <td>{animal.dataNascimento}</td>
+                                <td>{animal.especie}</td>
+                                <td>{animal.habitat}</td>
+                                <td>{animal.paisDeOrigem}</td>
                                 
                                 <td>
-                                    <Link to={`/pages/animal/editar/${animal.Id}`}>Editar</Link>
-                                    <Link to={`/pages/animal/deletar/${animal.Id}`}>Excluir</Link>
+                                    <Link to={`/pages/animal/editar/${animal.id}`}>Editar</Link>
+                                    <Link to={`/pages/animal/deletar/${animal.id}`}>Excluir</Link>
                                 </td>
                             </tr>
                         ))}

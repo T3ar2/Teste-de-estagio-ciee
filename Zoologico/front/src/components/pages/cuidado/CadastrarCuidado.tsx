@@ -15,13 +15,13 @@ function CadastrarCuidado(){
 
     async function enviarAnimalAPI(){
         try{
-        // const cuidado : Cuidado = {
-        //     nome,
-        //     descricao,
-        //     frequencia,                 
-        // }
+        const cuidado : Cuidado = {
+            nomeCuidado: nome,
+            descricao: descricao,
+            frequencia: frequencia,
+        }
 
-        const resposta = await axios.post ("http://localhost:5227/api/cuidado/cadastrar");
+        const resposta = await axios.post ("http://localhost:5227/api/cuidado/cadastrar", cuidado);
         console.log (resposta.data);
         }
         catch(error)

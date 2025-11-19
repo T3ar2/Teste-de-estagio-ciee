@@ -19,15 +19,15 @@ function CadastrarAnimal(){
     async function enviarAnimalAPI(){
         try{
         const animal : Animal = {
-            nome,
-            descricao,
-            dataNascimento,
-            especie,
-            habitat,
-            paisDeOrigem,                    
+            nome: nome,
+            descricao: descricao,
+            dataNascimento: dataNascimento,
+            especie: especie,
+            habitat: habitat,
+            paisDeOrigem: paisDeOrigem,
         }
 
-        const resposta = await axios.post ("http://localhost:5227/api/animal/cadastrar");
+        const resposta = await axios.post ("http://localhost:5227/api/animal/cadastrar", animal);
         console.log (resposta.data);
         }
         catch(error)
