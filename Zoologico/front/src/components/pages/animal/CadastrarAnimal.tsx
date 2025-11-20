@@ -7,7 +7,7 @@ function CadastrarAnimal(){
     const [nome, setNome] = useState("");
     const [descricao, setDescricao] = useState("");
     const [dataNascimento, setDataNascimento] = useState("");
-    const [especie, setespecie] = useState("");
+    const [especie, setEspecie] = useState("");
     const [habitat, setHabitat] = useState("");
     const [paisDeOrigem, setPaisDeOrigem] = useState("");
 
@@ -53,7 +53,7 @@ function CadastrarAnimal(){
                 </div>
                 <div>
                     <label>Espécie: </label>
-                    <input type="text" onChange={(e : any) =>setespecie(e.target.value)} required/>
+                    <input type="text" onChange={(e : any) =>setEspecie(e.target.value)} required/>
                 </div>
                 <div>
                     <label>Habitat: </label>

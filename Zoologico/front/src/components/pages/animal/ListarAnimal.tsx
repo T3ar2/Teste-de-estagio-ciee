@@ -13,7 +13,7 @@ function ListarAnimal(){
 
     async function ListarAnimalAPI() {
         try {
-           const resposta = await axios.get("http://localhost:5227/api/animal/listar");
+           const resposta = await axios.get("http://localhost:5227/api/animais/listar");
            const dados = resposta.data;
            console.log("Dados recebidos da API:", resposta); 
            
@@ -26,6 +26,20 @@ function ListarAnimal(){
         } catch (error) {
             console.log("Erro ao buscar dados da API. Detalhes: " + error);
             setAnimais([]);
+        }
+    }
+
+    function DeletarAnimalAPI(id: number){
+        DeletarAnimal(id);
+    }
+
+    async function DeletarAnimal(id : number) {
+        try {
+            const resposta = await axios.delete(`http://localhost:5227/api/animais/deletar/${id}`)
+            ListarAnimalAPI();
+            console.log(`${id} deletado com sucesso.`);
+        } catch (error) {
+            console.log(error)
         }
     }
     return(
@@ -57,7 +71,7 @@ function ListarAnimal(){
                                 
                                 <td>
                                     <Link to={`/pages/animal/editar/${animal.id}`}>Editar</Link>
-                                    <Link to={`/pages/animal/deletar/${animal.id}`}>Excluir</Link>
+                                    <button onClick={() => DeletarAnimal(animal.id!)}>Excluir</button>
                                 </td>
                             </tr>
                         ))}

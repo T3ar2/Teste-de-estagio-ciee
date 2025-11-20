@@ -43,7 +43,7 @@ function CadastrarCuidado(){
                 </div>
                 <div>
                     <label>Frequência: </label>
-                    <input type="date" onChange={(e : any) =>setFrequencia(e.target.value)} required/>
+                    <input type="text" onChange={(e : any) =>setFrequencia(e.target.value)} required/>
                 </div>
                 <div>
                     <button type="submit">Cadastrar</button>

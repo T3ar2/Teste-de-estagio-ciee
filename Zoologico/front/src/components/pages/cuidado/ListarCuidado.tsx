@@ -5,10 +5,8 @@ import Cuidado from "../../../models/Cuidado";
 
 
 function ListarCuidado(){
-    // 1. ESTADO: Armazena a lista de animais
     const[cuidados, setCuidado] = useState<Cuidado[]>([]);
 
-    // 2. BUSCA DE DADOS
     useEffect(() => {
         ListarCuidadoAPI();
     }, [])
@@ -28,6 +26,20 @@ function ListarCuidado(){
         } catch (error) {
             console.log("Erro ao buscar dados da API. Detalhes: " + error);
             setCuidado([]);
+        }
+    }
+
+    function DeletarCuidadoAPI(id: number){
+        DeletarCuidado(id);
+    }
+
+    async function DeletarCuidado(id : number) {
+        try {
+            const resposta = await axios.delete(`http://localhost:5227/api/cuidados/deletar/${id}`)
+            ListarCuidadoAPI();
+            console.log(`${id} deletado com sucesso.`);
+        } catch (error) {
+            console.log(error)
         }
     }
 
@@ -55,7 +67,7 @@ function ListarCuidado(){
                                 <td>{cuidado.frequencia}</td>
                                 <td>
                                     <Link to={`/pages/cuidado/editar/${cuidado.id}`}>Editar</Link>
-                                    <Link to={`/pages/cuidado/deletar/${cuidado.id}`}>Excluir</Link>
+                                    <button onClick={()=> DeletarCuidado}>Excluir</button>
                                 </td>
                             </tr>
                         ))}
