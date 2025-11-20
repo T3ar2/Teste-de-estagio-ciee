@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 
 function ListarAnimal(){
     const[animais, setAnimais] = useState<Animal[]>([]);
+    // Adicionado estado para o termo de busca
+    const [termoBusca, setTermoBusca] = useState('');
 
     useEffect(() => {
         ListarAnimalAPI();
@@ -42,10 +44,38 @@ function ListarAnimal(){
             console.log(error)
         }
     }
+
+    // Lógica simples de filtragem no front-end para exemplificar
+    const animaisFiltrados = animais.filter(animal => 
+        animal.nome.toLowerCase().includes(termoBusca.toLowerCase()) || 
+        animal.especie.toLowerCase().includes(termoBusca.toLowerCase())
+    );
+
     return(
-        <div>
-            <h1>Lista de Animais</h1>
-                <table>
+        <div className="container-minimal">
+            
+            {/* Cabeçalho Limpo: Título e Botão de Cadastro Alinhados */}
+            <div className="list-header">
+                <h1 className="heading-primary">Lista de Animais</h1>
+                <Link to="/pages/animal/cadastrar" className="btn-primary">Cadastrar Novo Animal</Link>
+            </div>
+
+            {/* Card Minimalista para a Área de Conteúdo */}
+            <div className="card-minimal" style={{padding: '0'}}> {/* Usando style inline para remover o padding padrão e aplicar a borda/sombra na tabela */}
+                
+                {/* Campo de Busca dentro do Card */}
+                <div className="search-area" style={{padding: '20px'}}> 
+                    <input 
+                        type="text"
+                        placeholder="Pesquisar por nome ou espécie..."
+                        className="search-bar-minimal"
+                        value={termoBusca}
+                        onChange={(e) => setTermoBusca(e.target.value)}
+                    />
+                </div>
+
+                {/* Tabela com Estilo Minimalista Aprimorado */}
+                <table className="table-minimalist">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -59,7 +89,7 @@ function ListarAnimal(){
                         </tr>
                     </thead>
                     <tbody>
-                        {animais.map((animal) => (
+                        {animaisFiltrados.map((animal) => (
                             <tr key={animal.id}> 
                                 <td>{animal.id}</td>
                                 <td>{animal.nome}</td>
@@ -70,15 +100,14 @@ function ListarAnimal(){
                                 <td>{animal.paisDeOrigem}</td>
                                 
                                 <td>
-                                    <Link to={`/pages/animal/editar/${animal.id}`}>Editar</Link>
-                                    <button onClick={() => DeletarAnimal(animal.id!)}>Excluir</button>
+                                    {/* Botões de Ação Estilizados */}
+                                    <Link to={`/pages/animal/editar/${animal.id}`} className="btn-secondary">Editar</Link>
+                                    <button onClick={() => DeletarAnimal(animal.id!)} className="btn-danger">Excluir</button>
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
-            <div>
-                <Link to="/pages/animal/cadastrar">Cadastrar Novo Animal</Link>
             </div>
         </div>
     );

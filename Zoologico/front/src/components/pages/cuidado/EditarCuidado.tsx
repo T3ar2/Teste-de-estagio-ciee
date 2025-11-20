@@ -18,7 +18,7 @@ function EditarCuidado(){
 
 
     async function BuscarCuidado() {
-        const resposta = await axios.get<Cuidado>(`http://localhost:5227/api/cuidadops/buscar/${id}`);
+        const resposta = await axios.get<Cuidado>(`http://localhost:5227/api/cuidados/buscar/${id}`);
         setNomeCuidado(resposta.data.nomeCuidado);
         setDescricao(resposta.data.descricao);
         setFrequencia(resposta.data.frequencia);
@@ -48,25 +48,33 @@ function EditarCuidado(){
     
    
     return (
-        <div>
-            <h1>Cadastrar Animal</h1>
-            <form onSubmit={submeterForm}>
-                <div>
-                    <label>Nome: </label>    
-                    <input value={nomeCuidado} type="text" onChange={ (e : any) =>setNomeCuidado(e.target.value)}required/>
-                </div>
-                <div>
-                    <label>Descrição: </label>
-                    <input value={descricao} type="text" onChange={(e : any) =>setDescricao(e.target.value)} required/>
-                </div>
-                <div>
-                    <label>Frequência: </label>
-                    <input value={frequencia} type="text" onChange={(e : any) =>setFrequencia(e.target.value)} required/>
-                </div>
-                <div>
-                    <button type="submit">Salvar</button>
-                </div>
-            </form>
+        <div className="container-minimal">
+            <div className="card-minimal">
+                <h1 className="heading-primary">Editar Cuidado: ID #{id}</h1>
+                <form onSubmit={submeterForm}>
+                    <div className="form-group">
+                        <label className="label-minimal">Nome: </label>    
+                        <input value={nomeCuidado} className="input-minimal" type="text" onChange={ (e : any) =>setNomeCuidado(e.target.value)}required/>
+                    </div>
+                    <div className="form-group">
+                        <label className="label-minimal">Descrição: </label>
+                        <textarea 
+                            value={descricao} 
+                            className="input-minimal" 
+                            rows={3}
+                            onChange={(e : any) =>setDescricao(e.target.value)} 
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label className="label-minimal">Frequência: </label>
+                        <input value={frequencia} className="input-minimal" type="text" onChange={(e : any) =>setFrequencia(e.target.value)} required/>
+                    </div>
+                    <div className="text-right">
+                        <button className="btn-primary" type="submit">Salvar</button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 

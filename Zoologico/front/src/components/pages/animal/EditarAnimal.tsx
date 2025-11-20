@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Animal from "../../../models/Animal";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { preconnect } from "react-dom";
+import { preconnect } from "react-dom"; // Mantendo imports originais
 
 function EditarAnimal(){
     const {id} = useParams();
@@ -37,6 +37,7 @@ function EditarAnimal(){
     async function EnviarAnimalAPI(){
         try{
         const animal : Animal = {
+            // Nota: O ID é importante para a rota PUT/UPDATE, mesmo que não esteja na declaração original
             nome: nome,
             descricao: descricao,
             dataNascimento: dataNascimento,
@@ -45,51 +46,70 @@ function EditarAnimal(){
             paisDeOrigem: paisDeOrigem,
         }
 
-        const resposta = await axios.post (`http://localhost:5227/api/animal/atualizar/${animal.id}`, animal);
+        const resposta = await axios.post (`http://localhost:5227/api/animal/atualizar/${id}`, animal);
         console.log (resposta.data);
         }
         catch(error)
-        {console.log("Erro ao cadastrar cuidado: " + error);}
+        {console.log("Erro ao atualizar animal: " + error);}
         
     }
     
    
     return (
-        <div>
-            <h1>Cadastrar Animal</h1>
-            <form onSubmit={submeterForm}>
-                <div>
-                    <label>Nome: </label>    
-                    <input value={nome} type="text" onChange={ (e : any) =>setNome(e.target.value)}required/>
-                </div>
-                <div>
-                    <label>Descrição: </label>
-                    <input value={descricao} type="text" onChange={(e : any) =>setDescricao(e.target.value)} required/>
-                </div>
-                <div>
-                    <label>Data de Nascimento: </label>
-                    <input value={dataNascimento} type="date" onChange={(e : any) =>setDataNascimento(e.target.value)} required/>
-                </div>
-                <div>
-                    <label>Espécie: </label>
-                    <input value={especie} type="text" onChange={(e : any) =>setEspecie(e.target.value)} required/>
-                </div>
-                <div>
-                    <label>Habitat: </label>
-                    <input value={habitat} type="text" onChange={(e : any) =>setHabitat(e.target.value)} required/>
-                </div>
-                <div>
-                    <label>País de origem: </label>
-                    <input value={paisDeOrigem} type="text" onChange={(e : any) =>setPaisDeOrigem(e.target.value)} required/>
-                </div>
-                <div>
-                    <button type="submit">Salvar</button>
-                </div>
-            </form>
+        <div className="container-minimal">
+            <div className="card-minimal">
+                <h1 className="heading-primary">Editar Animal: ID #{id}</h1>
+                <form onSubmit={submeterForm}>
+                    {/* Linha 1: Nome (Largura total) */}
+                    <div className="form-group">
+                        <label className="label-minimal">Nome: </label>    
+                        <input value={nome} className="input-minimal" type="text" onChange={ (e : any) =>setNome(e.target.value)}required/>
+                    </div>
+                    
+                    {/* Linha 2: Descrição (Textarea para melhor visualização) */}
+                    <div className="form-group">
+                        <label className="label-minimal">Descrição: </label>
+                        <textarea 
+                            value={descricao} 
+                            className="input-minimal" 
+                            rows={3} // Altura ajustada
+                            onChange={(e : any) =>setDescricao(e.target.value)} 
+                            required
+                        />
+                    </div>
+                    
+                    {/* Linha 3: Data de Nasc. e Espécie (Duas colunas) */}
+                    <div className="form-row"> 
+                        <div className="form-group"> 
+                            <label className="label-minimal">Data de Nascimento: </label>
+                            <input value={dataNascimento} className="input-minimal" type="date" onChange={(e : any) =>setDataNascimento(e.target.value)} required/>
+                        </div>
+                        <div className="form-group">
+                            <label className="label-minimal">Espécie: </label>
+                            <input value={especie} className="input-minimal" type="text" onChange={(e : any) =>setEspecie(e.target.value)} required/>
+                        </div>
+                    </div>
+
+                    {/* Linha 4: Habitat e País de Origem (Duas colunas) */}
+                    <div className="form-row">
+                        <div className="form-group">
+                            <label className="label-minimal">Habitat: </label>
+                            <input value={habitat} className="input-minimal" type="text" onChange={(e : any) =>setHabitat(e.target.value)} required/>
+                        </div>
+                        <div className="form-group">
+                            <label className="label-minimal">País de origem: </label>
+                            <input value={paisDeOrigem} className="input-minimal" type="text" onChange={(e : any) =>setPaisDeOrigem(e.target.value)} required/>
+                        </div>
+                    </div>
+
+                    {/* Botão Salvar (Alinhado à direita) */}
+                    <div className="text-right">
+                        <button className="btn-primary" type="submit">Salvar Alterações</button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
-
-    
 }
 
 export default EditarAnimal;

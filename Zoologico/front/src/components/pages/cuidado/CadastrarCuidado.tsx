@@ -29,26 +29,33 @@ function CadastrarCuidado(){
         
     }
 
-    return (
-        <div>
-            <h1>Cadastrar Animal</h1>
-            <form onSubmit={submeterForm}>
-                <div>
-                    <label>Nome: </label>    
-                    <input type="text" onChange={ (e : any) =>setNome(e.target.value)}required/>
-                </div>
-                <div>
-                    <label>Descrição: </label>
-                    <input type="text" onChange={(e : any) =>setDescricao(e.target.value)} required/>
-                </div>
-                <div>
-                    <label>Frequência: </label>
-                    <input type="text" onChange={(e : any) =>setFrequencia(e.target.value)} required/>
-                </div>
-                <div>
-                    <button type="submit">Cadastrar</button>
-                </div>
-            </form>
+   return (
+        <div className="container-minimal">
+            <div className="card-minimal">
+                <h1 className="heading-primary">Cadastrar Cuidado</h1>
+                <form onSubmit={submeterForm}>
+                    <div className="form-group">
+                        <label className="label-minimal">Nome: </label>    
+                        <input className="input-minimal" type="text" onChange={ (e : any) =>setNome(e.target.value)}required/>
+                    </div>
+                    <div className="form-group">
+                        <label className="label-minimal">Descrição: </label>
+                        <textarea
+                            className="input-minimal"
+                            rows={3}
+                            onChange={(e : any) =>setDescricao(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label className="label-minimal">Frequência: </label>
+                        <input className="input-minimal" type="text" onChange={(e : any) =>setFrequencia(e.target.value)} required/>
+                    </div>
+                    <div className="text-right">
+                        <button className="btn-primary" type="submit">Cadastrar</button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 

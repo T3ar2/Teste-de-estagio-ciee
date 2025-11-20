@@ -1,38 +1,200 @@
-.App {
-  text-align: center;
+body {
+  margin: 0;
+  /* Garante um fundo cinza claro para o minimalismo de alto contraste */
+  background-color: #f7f9fc;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Base de layout para todas as páginas de conteúdo */
+.container-minimal {
+    padding: 40px 24px;
+    /* Aumentando o tamanho máximo do container */
+    max-width: 1400px; 
+    margin: 0 auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Estilo para Títulos */
+.heading-primary {
+    font-size: 26px; 
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee; 
 }
 
-.App-link {
-  color: #61dafb;
+/* CARD/FORMULÁRIO BASE */
+.card-minimal {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06); 
+    padding: 40px; 
+}
+.card-minimal .heading-primary {
+    margin-top: 0; 
+    margin-bottom: 30px;
+    font-size: 26px; 
+    padding-bottom: 15px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Formulário e Inputs */
+.form-group {
+    margin-bottom: 25px; 
+}
+
+.label-minimal {
+    display: block;
+    margin-bottom: 8px; 
+    font-weight: 500;
+    color: #555;
+    font-size: 14px;
+}
+
+.input-minimal {
+    width: 100%;
+    padding: 12px 15px; 
+    border: 1px solid #e0e0e0; 
+    border-radius: 8px; 
+    font-size: 15px; 
+    color: #333;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    box-sizing: border-box; 
+}
+
+.input-minimal:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+/* Layout de Linhas em Grid (Para campos lado a lado) */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px; 
+    margin-bottom: 25px;
+}
+/* Alinhamento do botão no canto inferior direito */
+.text-right {
+    text-align: right;
+}
+
+/* BOTÕES */
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 25px; 
+    border: none;
+    border-radius: 8px; 
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+}
+
+/* Botões Secundários/Perigosos */
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 10px;
+    font-weight: 500;
+    font-size: 15px;
+    transition: background-color 0.2s;
+}
+
+.btn-secondary {
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 10px 18px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 10px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+.btn-secondary:hover {
+    background-color: #e0e0e0;
+    border-color: #bbb;
+    color: #222;
+}
+
+/* CAMPO DE BUSCA MINIMALISTA */
+.search-bar-minimal {
+    width: 100%;
+    padding: 15px 20px; 
+    border: 1px solid #e0e0e0; 
+    border-radius: 8px; 
+    font-size: 16px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s;
+}
+/* Estilo para a área de busca dentro do card (padding) */
+.card-minimal .search-area {
+    padding-bottom: 20px;
+}
+
+/* TABELA MINIMALISTA APRIMORADA */
+.table-minimalist {
+    width: 100%;
+    border-collapse: collapse; 
+    overflow: hidden; 
+    /* Margens da tabela removidas, o padding do card já funciona */
+}
+
+.table-minimalist th, .table-minimalist td {
+    padding: 16px 20px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0; 
+}
+
+.table-minimalist thead tr {
+    background-color: #fafafa; 
+}
+
+.table-minimalist th {
+    font-weight: 600;
+    color: #444;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.table-minimalist tbody tr:hover {
+    background-color: #fcfcfc; 
+    cursor: pointer;
+}
+
+.table-minimalist td:last-child {
+    white-space: nowrap; 
+}
+
+/* Layout de Lista/Botão de Cadastro */
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
 }

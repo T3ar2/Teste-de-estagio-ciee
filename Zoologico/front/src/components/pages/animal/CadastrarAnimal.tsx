@@ -36,37 +36,39 @@ function CadastrarAnimal(){
     }
 
     return (
-        <div>
-            <h1>Cadastrar Animal</h1>
-            <form onSubmit={submeterForm}>
-                <div>
-                    <label>Nome: </label>    
-                    <input type="text" onChange={ (e : any) =>setNome(e.target.value)}required/>
-                </div>
-                <div>
-                    <label>Descrição: </label>
-                    <input type="text" onChange={(e : any) =>setDescricao(e.target.value)} required/>
-                </div>
-                <div>
-                    <label>Data de Nascimento: </label>
-                    <input type="date" onChange={(e : any) =>setDataNascimento(e.target.value)} required/>
-                </div>
-                <div>
-                    <label>Espécie: </label>
-                    <input type="text" onChange={(e : any) =>setEspecie(e.target.value)} required/>
-                </div>
-                <div>
-                    <label>Habitat: </label>
-                    <input type="text" onChange={(e : any) =>setHabitat(e.target.value)} required/>
-                </div>
-                <div>
-                    <label>País de origem: </label>
-                    <input type="text" onChange={(e : any) =>setPaisDeOrigem(e.target.value)} required/>
-                </div>
-                <div>
-                    <button type="submit">Cadastrar</button>
-                </div>
-            </form>
+        <div className="container-minimal">
+            <div className="card-minimal">
+                <h1 className="heading-primary">Cadastrar Animal</h1>
+                <form onSubmit={submeterForm}>
+                    <div className="form-group">
+                        <label className="label-minimal">Nome: </label>    
+                        <input className="input-minimal" type="text" onChange={ (e : any) =>setNome(e.target.value)}required/>
+                    </div>
+                    <div className="form-group">
+                        <label className="label-minimal">Descrição: </label>
+                        <input className="input-minimal" type="text" onChange={(e : any) =>setDescricao(e.target.value)} required/>
+                    </div>
+                    <div className="form-group">
+                        <label className="label-minimal">Data de Nascimento: </label>
+                        <input className="input-minimal" type="date" onChange={(e : any) =>setDataNascimento(e.target.value)} required/>
+                    </div>
+                    <div className="form-group">
+                        <label className="label-minimal">Espécie: </label>
+                        <input className="input-minimal" type="text" onChange={(e : any) =>setEspecie(e.target.value)} required/>
+                    </div>
+                    <div className="form-group">
+                        <label className="label-minimal">Habitat: </label>
+                        <input className="input-minimal" type="text" onChange={(e : any) =>setHabitat(e.target.value)} required/>
+                    </div>
+                    <div className="form-group">
+                        <label className="label-minimal">País de origem: </label>
+                        <input className="input-minimal" type="text" onChange={(e : any) =>setPaisDeOrigem(e.target.value)} required/>
+                    </div>
+                    <div>
+                        <button className="btn-primary" type="submit">Cadastrar</button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 
