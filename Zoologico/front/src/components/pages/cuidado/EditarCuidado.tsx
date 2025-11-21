@@ -50,7 +50,7 @@ function EditarCuidado(){
     return (
         <div className="container-minimal">
             <div className="card-minimal">
-                <h1 className="heading-primary">Editar Cuidado: ID #{id}</h1>
+                <h1 className="heading-primary">Editar Cuidado:</h1>
                 <form onSubmit={submeterForm}>
                     <div className="form-group">
                         <label className="label-minimal">Nome: </label>    
@@ -71,7 +71,7 @@ function EditarCuidado(){
                         <input value={frequencia} className="input-minimal" type="text" onChange={(e : any) =>setFrequencia(e.target.value)} required/>
                     </div>
                     <div className="text-right">
-                        <button className="btn-primary" type="submit">Salvar</button>
+                        <button className="btn-base btn-primary" type="submit">Salvar</button>
                     </div>
                 </form>
             </div>

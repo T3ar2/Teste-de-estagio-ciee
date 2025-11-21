@@ -52,7 +52,7 @@ function CadastrarCuidado(){
                         <input className="input-minimal" type="text" onChange={(e : any) =>setFrequencia(e.target.value)} required/>
                     </div>
                     <div className="text-right">
-                        <button className="btn-primary" type="submit">Cadastrar</button>
+                        <button className="btn-base btn-primary" type="submit">Cadastrar</button>
                     </div>
                 </form>
             </div>

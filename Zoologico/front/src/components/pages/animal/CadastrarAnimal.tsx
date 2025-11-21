@@ -2,6 +2,7 @@ import { useState } from "react";
 import { preconnect } from "react-dom";
 import axios from "axios";
 import Animal from "../../../models/Animal";
+import { useNavigate } from "react-router-dom";
 
 function CadastrarAnimal(){
     const [nome, setNome] = useState("");
@@ -10,10 +11,12 @@ function CadastrarAnimal(){
     const [especie, setEspecie] = useState("");
     const [habitat, setHabitat] = useState("");
     const [paisDeOrigem, setPaisDeOrigem] = useState("");
+    const navigator = useNavigate();
 
     function submeterForm(e : any){
         e.preventDefault();
         enviarAnimalAPI();
+        navigator(-1);
     }
 
     async function enviarAnimalAPI(){
@@ -27,7 +30,7 @@ function CadastrarAnimal(){
             paisDeOrigem: paisDeOrigem,
         }
 
-        const resposta = await axios.post ("http://localhost:5227/api/animal/cadastrar", animal);
+        const resposta = await axios.post ("http://localhost:5227/api/animais/cadastrar", animal);
         console.log (resposta.data);
         }
         catch(error)
@@ -65,7 +68,7 @@ function CadastrarAnimal(){
                         <input className="input-minimal" type="text" onChange={(e : any) =>setPaisDeOrigem(e.target.value)} required/>
                     </div>
                     <div>
-                        <button className="btn-primary" type="submit">Cadastrar</button>
+                        <button className="btn-base btn-primary" type="submit" >Cadastrar</button>
                     </div>
                 </form>
             </div>

@@ -33,6 +33,26 @@ public static class AnimaisEndpoints
             {
                 return Results.BadRequest("Nome do animal é obrigatório.");
             }
+            if (string.IsNullOrWhiteSpace(novoAnimal.Descricao))
+            {
+                return Results.BadRequest("Descrição é obrigatória.");
+            }
+            if (string.IsNullOrWhiteSpace(novoAnimal.DataNascimento))
+            {
+                return Results.BadRequest("Data de Nascimento é obrigatória.");
+            }
+            if (string.IsNullOrWhiteSpace(novoAnimal.Especie))
+            {
+                return Results.BadRequest("Espécie é obrigatória.");
+            }
+            if (string.IsNullOrWhiteSpace(novoAnimal.Habitat))
+            {
+                return Results.BadRequest("Habitat é obrigatório.");
+            }
+            if (string.IsNullOrWhiteSpace(novoAnimal.PaisDeOrigem))
+            {
+                return Results.BadRequest("País de Origem é obrigatório.");
+            }
 
             bool jaExiste = await ctx.Animais.AnyAsync(x => x.Nome == novoAnimal.Nome);
             if (jaExiste is true) { return Results.Conflict("Animal já cadastrado no bando de dados."); }
@@ -55,6 +75,45 @@ public static class AnimaisEndpoints
         {
             Animais? resultado = await ctx.Animais.FindAsync(id);
             if (resultado is null) { return Results.NotFound("Animal não encontrado."); }
+            if (string.IsNullOrWhiteSpace(animalAlterado.Nome))
+            {
+                return Results.BadRequest("Nome do animal é obrigatório.");
+            }
+            if (string.IsNullOrWhiteSpace(animalAlterado.Descricao))
+            {
+                return Results.BadRequest("Descrição é obrigatória.");
+            }
+            if (string.IsNullOrWhiteSpace(animalAlterado.DataNascimento))
+            {
+                return Results.BadRequest("Data de Nascimento é obrigatória.");
+            }
+            if (string.IsNullOrWhiteSpace(animalAlterado.Especie))
+            {
+                return Results.BadRequest("Espécie é obrigatória.");
+            }
+            if (string.IsNullOrWhiteSpace(animalAlterado.Habitat))
+            {
+                return Results.BadRequest("Habitat é obrigatório.");
+            }
+            if (string.IsNullOrWhiteSpace(animalAlterado.PaisDeOrigem))
+            {
+                return Results.BadRequest("País de Origem é obrigatório.");
+            }
+
+
+            if (resultado.Nome != animalAlterado.Nome)
+            {
+                bool nomeJaExisteEmOutro = await ctx.Animais
+                    .AnyAsync(x => x.Nome == animalAlterado.Nome && x.Id != id);
+
+                if (nomeJaExisteEmOutro)
+                {
+                    return Results.Conflict("Já existe outro animal cadastrado com este nome.");
+                }
+            }
+
+
+
             resultado.Nome = animalAlterado.Nome;
             resultado.Descricao = animalAlterado.Descricao;
             resultado.DataNascimento = animalAlterado.DataNascimento;

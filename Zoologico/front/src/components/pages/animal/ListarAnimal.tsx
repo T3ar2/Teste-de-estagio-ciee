@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 function ListarAnimal(){
     const[animais, setAnimais] = useState<Animal[]>([]);
-    // Adicionado estado para o termo de busca
     const [termoBusca, setTermoBusca] = useState('');
 
     useEffect(() => {
@@ -45,7 +44,6 @@ function ListarAnimal(){
         }
     }
 
-    // Lógica simples de filtragem no front-end para exemplificar
     const animaisFiltrados = animais.filter(animal => 
         animal.nome.toLowerCase().includes(termoBusca.toLowerCase()) || 
         animal.especie.toLowerCase().includes(termoBusca.toLowerCase())
@@ -54,16 +52,15 @@ function ListarAnimal(){
     return(
         <div className="container-minimal">
             
-            {/* Cabeçalho Limpo: Título e Botão de Cadastro Alinhados */}
             <div className="list-header">
-                <h1 className="heading-primary">Lista de Animais</h1>
-                <Link to="/pages/animal/cadastrar" className="btn-primary">Cadastrar Novo Animal</Link>
+                <h2 className="heading-secondary">Lista de Animais</h2>
+                {/* Este é o botão "Cadastrar Novo Animal" */}
+                <Link to="/pages/animal/cadastrar" className="btn-base btn-primary">
+                    <i className="fas fa-plus"></i> Cadastrar Novo Animal
+                </Link>
             </div>
-
-            {/* Card Minimalista para a Área de Conteúdo */}
-            <div className="card-minimal" style={{padding: '0'}}> {/* Usando style inline para remover o padding padrão e aplicar a borda/sombra na tabela */}
+            <div className="card-minimal" style={{padding: '0'}}>
                 
-                {/* Campo de Busca dentro do Card */}
                 <div className="search-area" style={{padding: '20px'}}> 
                     <input 
                         type="text"
@@ -74,7 +71,6 @@ function ListarAnimal(){
                     />
                 </div>
 
-                {/* Tabela com Estilo Minimalista Aprimorado */}
                 <table className="table-minimalist">
                     <thead>
                         <tr>
@@ -100,9 +96,13 @@ function ListarAnimal(){
                                 <td>{animal.paisDeOrigem}</td>
                                 
                                 <td>
-                                    {/* Botões de Ação Estilizados */}
-                                    <Link to={`/pages/animal/editar/${animal.id}`} className="btn-secondary">Editar</Link>
-                                    <button onClick={() => DeletarAnimal(animal.id!)} className="btn-danger">Excluir</button>
+                                    <Link to={`/pages/animal/editar/${animal.id}`} className="btn-base btn-secondary">
+                                        <i className="fas fa-edit"></i> Editar
+                                    </Link>
+
+                                    <button onClick={() => DeletarAnimal(animal.id as number)} className="btn-base btn-danger">
+                                        <i className="fas fa-trash-alt"></i> Excluir
+                                    </button>
                                 </td>
                             </tr>
                         ))}

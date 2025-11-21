@@ -6,7 +6,6 @@ import Cuidado from "../../../models/Cuidado";
 
 function ListarCuidado(){
     const[cuidados, setCuidado] = useState<Cuidado[]>([]);
-    // Adicionado estado para o termo de busca
     const [termoBusca, setTermoBusca] = useState('');
 
     useEffect(() => {
@@ -45,7 +44,6 @@ function ListarCuidado(){
         }
     }
     
-    // Lógica simples de filtragem no front-end para exemplificar
     const cuidadosFiltrados = cuidados.filter(cuidado => 
         cuidado.nomeCuidado.toLowerCase().includes(termoBusca.toLowerCase()) || 
         cuidado.descricao.toLowerCase().includes(termoBusca.toLowerCase())
@@ -54,16 +52,13 @@ function ListarCuidado(){
     return(
         <div className="container-minimal">
             
-            {/* Cabeçalho Limpo: Título e Botão de Cadastro Alinhados */}
             <div className="list-header">
                 <h1 className="heading-primary">Lista de Cuidados</h1>
-                <Link to="/pages/cuidado/cadastrar" className="btn-primary">Cadastrar Novo Cuidado</Link>
+                <Link to="/pages/cuidado/cadastrar" className="btn-base btn-primary">Cadastrar Novo Cuidado</Link>
             </div>
 
-            {/* Card Minimalista para a Área de Conteúdo */}
-            <div className="card-minimal" style={{padding: '0'}}> {/* Usando style inline para remover o padding padrão e aplicar a borda/sombra na tabela */}
+            <div className="card-minimal" style={{padding: '0'}}>
 
-                {/* Campo de Busca dentro do Card */}
                 <div className="search-area" style={{padding: '20px'}}> 
                     <input 
                         type="text"
@@ -74,7 +69,6 @@ function ListarCuidado(){
                     />
                 </div>
 
-                {/* Tabela com Estilo Minimalista Aprimorado */}
                 <table className="table-minimalist">
                     <thead>
                         <tr>
@@ -93,10 +87,13 @@ function ListarCuidado(){
                                 <td>{cuidado.descricao}</td>
                                 <td>{cuidado.frequencia}</td>
                                 <td>
-                                    {/* Botões de Ação Estilizados */}
-                                    <Link to={`/pages/cuidado/editar/${cuidado.id}`} className="btn-secondary">Editar</Link>
-                                    
-                                    <button onClick={() => DeletarCuidado(cuidado.id!)} className="btn-danger">Excluir</button>
+                                    <Link to={`/pages/cuidado/editar/${cuidado.id}`} className="btn-base btn-secondary">
+                                        <i className="fas fa-edit"></i> Editar
+                                    </Link>
+
+                                    <button onClick={() => DeletarCuidado(cuidado.id as number)} className="btn-base btn-danger">
+                                        <i className="fas fa-trash-alt"></i> Excluir
+                                    </button>
                                 </td>
                             </tr>
                         ))}

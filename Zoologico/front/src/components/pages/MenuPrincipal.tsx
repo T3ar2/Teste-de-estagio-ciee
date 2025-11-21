@@ -10,7 +10,6 @@ function MenuPrincipal() {
         <span className="zoo-engraving">{engraving}</span>
         {zooName}
       </div>
-      {/* Aqui pode adicionar elementos de usuário/notificações */}
     </header>
   );
 }

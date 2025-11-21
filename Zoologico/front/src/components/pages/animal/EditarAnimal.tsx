@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import Animal from "../../../models/Animal";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-import { preconnect } from "react-dom"; // Mantendo imports originais
+import {  useParams, useNavigate } from "react-router-dom";
+import { preconnect } from "react-dom";
 
 function EditarAnimal(){
     const {id} = useParams();
@@ -12,6 +12,7 @@ function EditarAnimal(){
     const [especie, setEspecie] = useState("");
     const [habitat, setHabitat] = useState("");
     const [paisDeOrigem, setPaisDeOrigem] = useState("");
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -32,12 +33,12 @@ function EditarAnimal(){
     function submeterForm(e : any){
         e.preventDefault();
         EnviarAnimalAPI();
+        navigate(-1);
     }
 
     async function EnviarAnimalAPI(){
         try{
         const animal : Animal = {
-            // Nota: O ID é importante para a rota PUT/UPDATE, mesmo que não esteja na declaração original
             nome: nome,
             descricao: descricao,
             dataNascimento: dataNascimento,
@@ -46,7 +47,7 @@ function EditarAnimal(){
             paisDeOrigem: paisDeOrigem,
         }
 
-        const resposta = await axios.post (`http://localhost:5227/api/animal/atualizar/${id}`, animal);
+        const resposta = await axios.patch (`http://localhost:5227/api/animais/atualizar/${id}`, animal);
         console.log (resposta.data);
         }
         catch(error)
@@ -58,27 +59,24 @@ function EditarAnimal(){
     return (
         <div className="container-minimal">
             <div className="card-minimal">
-                <h1 className="heading-primary">Editar Animal: ID #{id}</h1>
+                <h1 className="heading-primary">Editar Animal:</h1>
                 <form onSubmit={submeterForm}>
-                    {/* Linha 1: Nome (Largura total) */}
                     <div className="form-group">
                         <label className="label-minimal">Nome: </label>    
                         <input value={nome} className="input-minimal" type="text" onChange={ (e : any) =>setNome(e.target.value)}required/>
                     </div>
                     
-                    {/* Linha 2: Descrição (Textarea para melhor visualização) */}
                     <div className="form-group">
                         <label className="label-minimal">Descrição: </label>
                         <textarea 
                             value={descricao} 
                             className="input-minimal" 
-                            rows={3} // Altura ajustada
+                            rows={3}
                             onChange={(e : any) =>setDescricao(e.target.value)} 
                             required
                         />
                     </div>
                     
-                    {/* Linha 3: Data de Nasc. e Espécie (Duas colunas) */}
                     <div className="form-row"> 
                         <div className="form-group"> 
                             <label className="label-minimal">Data de Nascimento: </label>
@@ -90,7 +88,6 @@ function EditarAnimal(){
                         </div>
                     </div>
 
-                    {/* Linha 4: Habitat e País de Origem (Duas colunas) */}
                     <div className="form-row">
                         <div className="form-group">
                             <label className="label-minimal">Habitat: </label>
@@ -102,9 +99,8 @@ function EditarAnimal(){
                         </div>
                     </div>
 
-                    {/* Botão Salvar (Alinhado à direita) */}
                     <div className="text-right">
-                        <button className="btn-primary" type="submit">Salvar Alterações</button>
+                        <button className="btn-base btn-primary" type="submit">Salvar Alterações</button>
                     </div>
                 </form>
             </div>

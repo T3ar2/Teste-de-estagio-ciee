@@ -32,6 +32,14 @@ public static class CuidadosEndpoints
             {
                 return Results.BadRequest("Nome do cuidado é obrigatório.");
             }
+            if (string.IsNullOrWhiteSpace(novoCuidado.Descricao))
+            {
+                return Results.BadRequest("Descrição é obrigatória.");
+            }
+            if (string.IsNullOrWhiteSpace(novoCuidado.Frequencia))
+            {
+                return Results.BadRequest("Frequência é obrigatória.");
+            }
 
             bool jaExiste = await ctx.Cuidados.AnyAsync(x => x.NomeCuidado == novoCuidado.NomeCuidado);
             if (jaExiste is true) { return Results.Conflict("Cuidado já cadastrado no bando de dados."); }
@@ -51,9 +59,34 @@ public static class CuidadosEndpoints
         });
 
         app.MapPatch("/api/cuidados/atualizar/{id}", async (AppDbContext ctx, int id, Cuidados cuidadoAlterado) =>
-        {
+        {   
             Cuidados? resultado = await ctx.Cuidados.FindAsync(id);
             if (resultado is null) { return Results.NotFound("Cuidado não encontrado."); }
+
+            if (string.IsNullOrWhiteSpace(cuidadoAlterado.NomeCuidado))
+            {
+                return Results.BadRequest("Nome do cuidado é obrigatório.");
+            }
+            if (string.IsNullOrWhiteSpace(cuidadoAlterado.Descricao))
+            {
+                return Results.BadRequest("Descrição é obrigatória.");
+            }
+            if (string.IsNullOrWhiteSpace(cuidadoAlterado.Frequencia))
+            {
+                return Results.BadRequest("Frequência é obrigatória.");
+            }
+
+
+            if (resultado.NomeCuidado != cuidadoAlterado.NomeCuidado)
+            {
+                bool nomeJaExisteEmOutro = await ctx.Cuidados
+                    .AnyAsync(x => x.NomeCuidado == cuidadoAlterado.NomeCuidado && x.Id != id);
+
+                if (nomeJaExisteEmOutro)
+                {
+                    return Results.Conflict("Já existe outro cuidado cadastrado com este nome.");
+                }
+            }
             resultado.NomeCuidado = cuidadoAlterado.NomeCuidado;
             resultado.Descricao = cuidadoAlterado.Descricao;
             resultado.Frequencia = cuidadoAlterado.Frequencia;
