@@ -4,6 +4,17 @@ import axios from "axios";
 import {  useParams, useNavigate } from "react-router-dom";
 import { preconnect } from "react-dom";
 
+const MessageDisplay = ({ message, type }: { message: string, type: 'success' | 'danger' | '' }) => {
+    if (!message) return null;
+    const baseStyle = "alert-minimal";
+    const typeStyle = type === 'success' ? 'alert-success' : 'alert-danger';
+    return (
+        <div className={`${baseStyle} ${typeStyle}`} style={{ marginBottom: '20px', padding: '10px', borderRadius: '5px' }}>
+            {message}
+        </div>
+    );
+};
+
 function EditarAnimal(){
     const {id} = useParams();
     const [nome, setNome] = useState("");
@@ -13,11 +24,13 @@ function EditarAnimal(){
     const [habitat, setHabitat] = useState("");
     const [paisDeOrigem, setPaisDeOrigem] = useState("");
     const navigate = useNavigate();
+    const [mensagem, setMensagem] = useState("");
+    const [tipoMensagem, setTipoMensagem] = useState<'success' | 'danger' | ''>('');
 
 
     useEffect(() => {
         BuscarAnimal();
-    }, []);
+    }, [id]);
 
 
     async function BuscarAnimal () {
@@ -30,10 +43,17 @@ function EditarAnimal(){
         setPaisDeOrigem(resposta.data.paisDeOrigem);
     }
 
+    function LimparMensagem() {
+        setTimeout(() => {
+            setMensagem("");
+            setTipoMensagem('');
+        }, 5000);
+    }
+
     function submeterForm(e : any){
         e.preventDefault();
+        setMensagem("");
         EnviarAnimalAPI();
-        navigate(-1);
     }
 
     async function EnviarAnimalAPI(){
@@ -49,9 +69,21 @@ function EditarAnimal(){
 
         const resposta = await axios.patch (`http://localhost:5227/api/animais/atualizar/${id}`, animal);
         console.log (resposta.data);
+        setMensagem(`Animal "${animal.nome}" atualizado com sucesso!`);
+        setTipoMensagem('success');
+        setTimeout(() => {
+            navigate("/pages/animal/listar");
+        }, 1500);
         }
-        catch(error)
-        {console.log("Erro ao atualizar animal: " + error);}
+        catch(error: any)
+        {
+            const erroMsg = error.response?.data || "Erro desconhecido ao atualizar o animal.";
+            console.error("Erro ao atualizar animal: " + erroMsg, error);
+            setMensagem(`Erro: ${erroMsg}`);
+            setTipoMensagem('danger');
+            LimparMensagem();
+
+        }
         
     }
     

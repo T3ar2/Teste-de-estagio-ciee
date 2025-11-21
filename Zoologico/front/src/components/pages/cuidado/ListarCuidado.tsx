@@ -3,6 +3,17 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Cuidado from "../../../models/Cuidado";
 
+const MessageDisplay = ({ message, type }: { message: string, type: 'success' | 'danger' | '' }) => {
+    if (!message) return null;
+    const baseStyle = "alert-minimal";
+    const typeStyle = type === 'success' ? 'alert-success' : 'alert-danger';
+    return (
+        <div className={`${baseStyle} ${typeStyle}`} style={{ marginBottom: '20px', padding: '10px', borderRadius: '5px' }}>
+            {message}
+        </div>
+    );
+};
+
 
 function ListarCuidado(){
     const[cuidados, setCuidado] = useState<Cuidado[]>([]);
@@ -11,6 +22,16 @@ function ListarCuidado(){
     useEffect(() => {
         ListarCuidadoAPI();
     }, [])
+
+    function LimparMensagem() {
+        setTimeout(() => {
+            setMensagem("");
+            setTipoMensagem('');
+        }, 5000); 
+    }
+
+    const [mensagem, setMensagem] = useState("");
+    const [tipoMensagem, setTipoMensagem] = useState<'success' | 'danger' | ''>('');
 
     async function ListarCuidadoAPI() {
         try {
@@ -30,17 +51,27 @@ function ListarCuidado(){
         }
     }
 
-    function DeletarCuidadoAPI(id: number){
-        DeletarCuidado(id);
-    }
-
     async function DeletarCuidado(id : number) {
+        const cuidadoToDelete = cuidados.find(c => c.id === id);
+        const nomeCuidado = cuidadoToDelete?.nomeCuidado || "O cuidado";
+        
         try {
             const resposta = await axios.delete(`http://localhost:5227/api/cuidados/deletar/${id}`)
-            ListarCuidadoAPI();
+            await ListarCuidadoAPI();
             console.log(`${id} deletado com sucesso.`);
-        } catch (error) {
-            console.log(error)
+            
+            // Sucesso
+            setMensagem(`${nomeCuidado} foi deletado com sucesso!`);
+            setTipoMensagem('success');
+            LimparMensagem();
+            
+        } catch (error: any) {
+            const erroMsg = error.response?.data || "Erro desconhecido ao deletar o cuidado.";
+            console.error(erroMsg);
+            // Erro
+            setMensagem(`Erro ao deletar ${nomeCuidado}: ${erroMsg}`);
+            setTipoMensagem('danger');
+            LimparMensagem();
         }
     }
     

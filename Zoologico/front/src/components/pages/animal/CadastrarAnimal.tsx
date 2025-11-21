@@ -4,6 +4,17 @@ import axios from "axios";
 import Animal from "../../../models/Animal";
 import { useNavigate } from "react-router-dom";
 
+const MessageDisplay = ({ message, type }: { message: string, type: 'success' | 'danger' | '' }) => {
+    if (!message) return null;
+    const baseStyle = "alert-minimal";
+    const typeStyle = type === 'success' ? 'alert-success' : 'alert-danger';
+    return (
+        <div className={`${baseStyle} ${typeStyle}`} style={{ marginBottom: '20px', padding: '10px', borderRadius: '5px' }}>
+            {message}
+        </div>
+    );
+};
+
 function CadastrarAnimal(){
     const [nome, setNome] = useState("");
     const [descricao, setDescricao] = useState("");
@@ -12,11 +23,19 @@ function CadastrarAnimal(){
     const [habitat, setHabitat] = useState("");
     const [paisDeOrigem, setPaisDeOrigem] = useState("");
     const navigator = useNavigate();
+    const [mensagem, setMensagem] = useState("");
+    const [tipoMensagem, setTipoMensagem] = useState<'success' | 'danger' | ''>('');
 
     function submeterForm(e : any){
         e.preventDefault();
         enviarAnimalAPI();
-        navigator(-1);
+    }
+
+    function LimparMensagem() {
+        setTimeout(() => {
+            setMensagem("");
+            setTipoMensagem('');
+        }, 5000);
     }
 
     async function enviarAnimalAPI(){
@@ -29,12 +48,26 @@ function CadastrarAnimal(){
             habitat: habitat,
             paisDeOrigem: paisDeOrigem,
         }
+        
 
         const resposta = await axios.post ("http://localhost:5227/api/animais/cadastrar", animal);
         console.log (resposta.data);
+        setMensagem(`Animal "${animal.nome}" cadastrado com sucesso!`);
+        setTipoMensagem('success');
+        setTimeout(() => {
+                navigator("/pages/animal/listar"); // Assumindo a rota de listagem
+            }, 1500);   
+
+
+
         }
-        catch(error)
-        {console.log("Erro ao cadastrar produto: " + error);}
+        catch(error: any){
+            const erroMsg = error.response?.data || "Erro desconhecido ao cadastrar o animal.";
+            console.error("Erro ao cadastrar animal: ", erroMsg, error);
+            setMensagem(`Erro: ${erroMsg}`);
+            setTipoMensagem('danger');
+            LimparMensagem();
+        }
         
     }
 
